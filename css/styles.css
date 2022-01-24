@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#theBody {
+  background-color: rgb(152, 158, 163);
+}
+
+form {
+  width: 60%;
+  margin: auto;
+  background-color: rgb(192, 207, 197);
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.status {
+  margin: auto;
+  display: grid;
+  align-items: center;
+}
+
+.status h2 {
+  text-align: center;
+  background-color: #212529;
+  margin: 10px 0;
+  padding: 8px;
+  color: rgb(211, 206, 206);
+}
+
+.empty {
+  width: 60%;
+  height: 100vh;
+  margin: 20px auto;
+}
+
+.actions {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+}
+
+.todo {
+  margin: 5px;
+  background-color: rgb(192, 207, 197);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#description {
+  resize: none;
+}
+
+.btn-dark {
+  margin: 8px;
+}
