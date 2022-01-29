@@ -1,97 +1,96 @@
 class TodoInput {
-  form_el: HTMLFormElement;
-  title_el: HTMLInputElement;
-  description_el: HTMLInputElement;
+  formElement: HTMLFormElement;
+  titleElement: HTMLInputElement;
+  descriptionElement: HTMLInputElement;
 
   constructor() {
-    this.form_el = document.querySelector("form") as HTMLFormElement;
-    this.title_el = document.getElementById("title") as HTMLInputElement;
-    this.description_el = document.getElementById(
-      "description"
+    this.formElement = document.querySelector('form')! as HTMLFormElement;
+    this.titleElement = document.getElementById('title')! as HTMLInputElement;
+    this.descriptionElement = document.getElementById(
+      'description'
     ) as HTMLInputElement;
 
     this.configure();
   }
   private configure() {
-    this.form_el.addEventListener("submit", this.submitHandler.bind(this));
+    this.formElement.addEventListener('submit', this.submitHandler.bind(this));
   }
 
   private submitHandler(event: Event) {
     event.preventDefault();
 
-    const title: string = this.title_el.value;
-    const description: string = this.description_el.value;
+    const title: string = this.titleElement.value;
+    const description: string = this.descriptionElement.value;
 
     const todo_container = document.getElementById(
-      "todo-list"
+      'todo-list'
     ) as HTMLDivElement;
-    const todo_el = document.createElement("div") as HTMLDivElement;
+    const todoElement = document.createElement('div')! as HTMLDivElement;
 
-    todo_el.setAttribute("class", "todo");
-    todo_container.appendChild(todo_el);
+    todoElement.setAttribute('class', 'todo');
+    todo_container.appendChild(todoElement);
 
-    const title_input_el = document.createElement("input") as HTMLInputElement;
-    title_input_el.classList.add("form-control");
-    title_input_el.type = "text";
-    title_input_el.value = title;
-    title_input_el.setAttribute("readonly", "readonly");
+    const titleInputElement = document.createElement(
+      'input'
+    ) as HTMLInputElement;
+    titleInputElement.classList.add('form-control');
+    titleInputElement.type = 'text';
+    titleInputElement.value = title;
+    titleInputElement.setAttribute('readonly', 'readonly');
 
-    const description_input_el = document.createElement("textarea");
-    description_input_el.classList.add("form-control");
-    description_input_el.setAttribute("id", "description");
-    description_input_el.value = description;
-    description_input_el.setAttribute("readonly", "readonly");
+    const descriptionInputElement = document.createElement('textarea');
+    descriptionInputElement.classList.add('form-control');
+    descriptionInputElement.setAttribute('id', 'description');
+    descriptionInputElement.value = description;
+    descriptionInputElement.setAttribute('readonly', 'readonly');
 
-    const due_label = document.createElement("label") as HTMLLabelElement;
-    due_label.innerText = "Due: ";
+    todoElement.appendChild(titleInputElement);
+    todoElement.appendChild(descriptionInputElement);
 
-    todo_el.appendChild(title_input_el);
-    todo_el.appendChild(description_input_el);
+    const taskActionElement = document.createElement('div')! as HTMLDivElement;
+    taskActionElement.classList.add('actions');
 
-    const task_actions_el = document.createElement("div") as HTMLDivElement;
-    task_actions_el.classList.add("actions");
-
-    const task_edit_el = document.createElement("button") as HTMLButtonElement;
-    task_edit_el.setAttribute("class", "btn btn-dark");
-    task_edit_el.innerText = "Edit";
-
-    const task_delete_el = document.createElement(
-      "button"
+    const taskEditElement = document.createElement(
+      'button'
     ) as HTMLButtonElement;
-    task_delete_el.setAttribute("class", "btn btn-dark");
-    task_delete_el.innerText = "Delete";
+    taskEditElement.setAttribute('class', 'btn btn-dark');
+    taskEditElement.innerText = 'Edit';
 
-    task_actions_el.appendChild(task_edit_el);
-    task_actions_el.appendChild(task_delete_el);
+    const taskDeleteElement = document.createElement(
+      'button'
+    ) as HTMLButtonElement;
+    taskDeleteElement.setAttribute('class', 'btn btn-dark');
+    taskDeleteElement.innerText = 'Delete';
 
-    todo_el.appendChild(task_actions_el);
+    taskActionElement.appendChild(taskEditElement);
+    taskActionElement.appendChild(taskDeleteElement);
+
+    todoElement.appendChild(taskActionElement);
 
     // Editing items
-    task_edit_el.addEventListener("click", (event: Event) => {
-      if (task_edit_el.innerText.toLowerCase() == "edit") {
-        task_edit_el.innerText = "Save";
+    taskEditElement.addEventListener('click', (event: Event) => {
+      if (taskEditElement.innerText.toLowerCase() == 'edit') {
+        taskEditElement.innerText = 'Save';
 
-        title_input_el.removeAttribute("readonly");
-        description_input_el.removeAttribute("readonly");
+        titleInputElement.removeAttribute('readonly');
+        descriptionInputElement.removeAttribute('readonly');
 
-        title_input_el.focus();
-        description_input_el.focus();
+        titleInputElement.focus();
+        descriptionInputElement.focus();
       } else {
-        task_edit_el.innerText = "Edit";
-        title_input_el.setAttribute("readonly", "readonly");
-        description_input_el.setAttribute("readonly", "readonly");
+        taskEditElement.innerText = 'Edit';
+        titleInputElement.setAttribute('readonly', 'readonly');
+        descriptionInputElement.setAttribute('readonly', 'readonly');
       }
     });
 
-    // deleting items
-    task_delete_el.addEventListener("click", function (event: Event) {
-      todo_el.remove();
+    // Deleting items
+    taskDeleteElement.addEventListener('click', function (event: Event) {
+      todoElement.remove();
     });
-    // clear form
-    this.form_el.reset();
 
-    todo_el.setAttribute("draggable", "true");
-    const empties = document.querySelectorAll(".empty");
+    // Clear form
+    this.formElement.reset();
   }
 }
 
