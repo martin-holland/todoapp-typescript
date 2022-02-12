@@ -1,18 +1,24 @@
 <html>
-  <head></head>
+  <head>
+    <link rel="stylesheet" href="./css/styles.css" type="text/css" />
+  </head>
   <body>
-    <form>
-      <input type="text" placeholder="Add Todo" />
-      <button type="submit" class="addTodo">Add</button>
-    </form>
-    <template>
-      <li>
-        <h1></h1>
-        <button class="del">Delete</button>
-        <button class="edit">Edit</button>
-      </li>
-    </template>
-    <ul></ul>
+    <div class="container">
+      <form>
+        <input type="text" placeholder="Task to complete" />
+        <button type="submit" class="addTodo">Add</button>
+      </form>
+      <template>
+        <li>
+          <h1></h1>
+          <button class="del">Delete</button>
+          <button class="edit">Edit</button>
+        </li>
+      </template>
+      <div class="template-area">
+        <ul id="listarea"></ul>
+      </div>
+    </div>
     <script src="dist/app.js"></script>
   </body>
 </html>

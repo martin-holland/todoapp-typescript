@@ -179,12 +179,44 @@ class TodoList {
 class TodoInput {
   todoInput: HTMLInputElement;
   submitButton: HTMLButtonElement;
+  container: HTMLElement;
+  heading: HTMLElement;
+  form: HTMLFormElement;
+  deleteAll: HTMLButtonElement;
+  listArea: HTMLUListElement;
   constructor() {
+    // initialisation for document for display and styling
+
+    this.container = document.querySelector('.container')! as HTMLElement;
+    this.heading = document.createElement('h2')! as HTMLElement;
+    this.heading.textContent = "To Do App"
+    this.container.prepend(this.heading)
+    this.form = document.querySelector('form')! as HTMLFormElement
+    this.deleteAll = document.createElement('button')! as HTMLButtonElement;
+    this.deleteAll.type = "button";
+    this.deleteAll.textContent = "Delete All"
+    this.deleteAll.className = "deleteAll"
+    this.listArea = document.getElementById('listarea')! as HTMLUListElement
+    this.form.prepend(this.deleteAll)
+
+    this.deleteAll.addEventListener('click', this.deleteAllHandler.bind(this))
+
+
+    // intialisation for user interaction
     this.todoInput = document.querySelector('input')! as HTMLInputElement;
     this.submitButton = document.querySelector(
       '.addTodo'
     )! as HTMLButtonElement;
     this.submit();
+  }
+
+
+  private deleteAllHandler(e: Event) {
+    e.preventDefault()
+    let deleteAllConfirm = window.confirm('Are you sure you want to delete all To do Entries?')
+    if (deleteAllConfirm == true) {
+    this.listArea.innerHTML = "";
+    }
   }
 
   private validation(value: string): string | undefined {
@@ -193,7 +225,7 @@ class TodoInput {
       min: 3,
     });
     if (!checkInput) {
-      alert('Invalid input');
+      alert('To do task needs to be longer than 3 characters');
       return;
     }
     return value;
