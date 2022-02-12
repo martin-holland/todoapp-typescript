@@ -1,7 +1,4 @@
-# Project Template
-
-This project template can be used to start any TypeScript project from scratch
-The output directory is automatically generated based on tsconfig.json
+# Todo App - Typescript Project
 
 # Steps to follow
 
