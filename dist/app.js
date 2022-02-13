@@ -87,7 +87,10 @@ var TodoItem = (function () {
         this.ulElement.querySelector('.edit').id = this.id;
     };
     TodoItem.prototype.deleteItem = function (id, todoItems) {
-        var removedTodo = todoItems.filter(function (todo) { return todo.id !== id; });
+        var removedTodo = todoItems.filter(function (todo) {
+            todo.id !== id;
+            localStorage.removeItem(todo.id);
+        });
         appState.Todos = removedTodo;
     };
     TodoItem.prototype.deleteHandler = function () {
@@ -185,6 +188,8 @@ var TodoInput = (function () {
         if (ValidatedText) {
             var id = Math.random().toString();
             appState.addTodo(id, ValidatedText, STATUS.Pending);
+            console.log('Test for localStorage: ' + id, ValidatedText);
+            localStorage.setItem(id, ValidatedText);
             this.clearFormInput();
         }
         else {

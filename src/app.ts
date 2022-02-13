@@ -36,6 +36,10 @@ class AppState {
 
   protected constructor() {
     this.todos = [];
+    // for (let i  = 0; i < localStorage.length; i++) {
+    //     let id = localStorage.getItem(localStorage.key(i))
+    //     this.todos.push(id)
+    // }
   }
 
   static getInstance() {
@@ -107,7 +111,10 @@ class TodoItem {
   }
   //delete by its id and updating todolist using set method
   private deleteItem(id: string, todoItems: TodoStructure[]) {
-    const removedTodo = todoItems.filter((todo) => todo.id !== id);
+    const removedTodo = todoItems.filter((todo) => {
+      todo.id !== id
+      localStorage.removeItem(todo.id)
+    });
     appState.Todos = removedTodo;
   }
 
@@ -243,6 +250,8 @@ class TodoInput {
     if (ValidatedText) {
       const id = Math.random().toString();
       appState.addTodo(id, ValidatedText, STATUS.Pending);
+      console.log('Test for localStorage: ' + id, ValidatedText)
+      localStorage.setItem(id, ValidatedText)
       this.clearFormInput();
     } else {
       this.clearFormInput();
