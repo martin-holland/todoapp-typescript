@@ -1,6 +1,8 @@
 <html>
   <head>
     <link rel="stylesheet" href="./css/styles.css" type="text/css" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <title>Typescript To Do App</title>
   </head>
   <body>
     <div class="container">
@@ -11,8 +13,10 @@
       <template>
         <li>
           <h1></h1>
-          <button class="del">Delete</button>
-          <button class="edit">Edit</button>
+          <div class="buttons-div">
+            <button class="del">Delete</button>
+            <button class="edit">Edit</button>
+          </div>
         </li>
       </template>
       <div class="template-area">
@@ -21,4 +25,5 @@
     </div>
     <script src="dist/app.js"></script>
   </body>
+  <footer>Copyright &copy; - Martin Holland 2022</footer>
 </html>
