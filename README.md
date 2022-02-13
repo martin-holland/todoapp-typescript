@@ -41,14 +41,21 @@ tsc -w
 
 ![Todo Typescript App](todo-app.png)
 
-## Sources
+## Learnings:
 
-- [GitHub Guides - masterin markdown](https://guides.github.com/features/mastering-markdown/)
-- [Make a README](https://www.makeareadme.com/)
+- [x] Using Interfaces to correctly assign Types before using them.
+- [x] Correctly building class objects for use in the DOM environment.
+- [x] Manpiulating the DOM environment using a template in HTML.
+- [x] Using additional classes to validate data and then return it to view classes.
+- [x] Using lite-server in combination with Typescript to develop a working website easily.
+
+## Features to add:
+
+- [x] localStorage addon to save To do list tasks for page reload. I was looking into this but the issue I was having was correctly assigning it back to my todo array inside a protected constructor.
 
 ## Authors and acknowledgment
 
-Margit Tennosaar
+Martin Holland
 
-- GitHub @margittennosaar
-- [LinkedIn](https://www.linkedin.com/in/margittennosaar/)
+- GitHub @martin-holland
+- [LinkedIn](https://www.linkedin.com/in/martin-holland-5099071b9/)
