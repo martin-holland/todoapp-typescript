@@ -13,6 +13,7 @@ var STATUS;
     STATUS[STATUS["Pending"] = 0] = "Pending";
     STATUS[STATUS["Finished"] = 1] = "Finished";
 })(STATUS || (STATUS = {}));
+var something = "";
 function validate(todo) {
     var isValid = true;
     if (todo.min && todo.text.length < todo.min) {
@@ -86,7 +87,9 @@ var TodoItem = (function () {
         this.ulElement.querySelector('.edit').id = this.id;
     };
     TodoItem.prototype.deleteItem = function (id, todoItems) {
-        var removedTodo = todoItems.filter(function (todo) { return todo.id !== id; });
+        var removedTodo = todoItems.filter(function (todo) {
+            todo.id !== id;
+        });
         appState.Todos = removedTodo;
     };
     TodoItem.prototype.deleteHandler = function () {
@@ -139,9 +142,6 @@ var TodoList = (function () {
 }());
 var TodoInput = (function () {
     function TodoInput() {
-        this.todoInput = document.querySelector('input');
-        this.submitButton = document.querySelector('.addTodo');
-        this.submit();
         this.container = document.querySelector('.container');
         this.heading = document.createElement('h2');
         this.heading.textContent = "To Do App";
@@ -154,6 +154,9 @@ var TodoInput = (function () {
         this.listArea = document.getElementById('listarea');
         this.form.prepend(this.deleteAll);
         this.deleteAll.addEventListener('click', this.deleteAllHandler.bind(this));
+        this.todoInput = document.querySelector('input');
+        this.submitButton = document.querySelector('.addTodo');
+        this.submit();
     }
     TodoInput.prototype.deleteAllHandler = function (e) {
         e.preventDefault();
@@ -168,7 +171,7 @@ var TodoInput = (function () {
             min: 3,
         });
         if (!checkInput) {
-            alert('Invalid input');
+            alert('To do task needs to be longer than 3 characters');
             return;
         }
         return value;
